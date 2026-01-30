@@ -1,45 +1,96 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CategoryList from "./components/CategoryList";
 import ImageGallery from "./components/ImageGallery";
 import "./App.css";
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
     <div className="app">
-      <div className="noise-overlay"></div>
-      
-      <header className="header">
+      {/* Animated Background */}
+      <div className="background-container">
+        <div 
+          className="gradient-orb orb-1"
+          style={{
+            transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)`
+          }}
+        ></div>
+        <div 
+          className="gradient-orb orb-2"
+          style={{
+            transform: `translate(${mousePosition.x * -15}px, ${mousePosition.y * -15}px)`
+          }}
+        ></div>
+        <div 
+          className="gradient-orb orb-3"
+          style={{
+            transform: `translate(${mousePosition.x * 25}px, ${mousePosition.y * 25}px)`
+          }}
+        ></div>
+        <div className="noise-texture"></div>
+      </div>
+
+      {/* Floating Particles */}
+      <div className="particles-container">
+        {[...Array(20)].map((_, i) => (
+          <div 
+            key={i} 
+            className="particle"
+            style={{
+              // eslint-disable-next-line react-hooks/purity
+              left: `${Math.random() * 100}%`,
+              // eslint-disable-next-line react-hooks/purity
+              top: `${Math.random() * 100}%`,
+              // eslint-disable-next-line react-hooks/purity
+              animationDelay: `${Math.random() * 5}s`,
+              // eslint-disable-next-line react-hooks/purity
+              animationDuration: `${15 + Math.random() * 10}s`
+            }}
+          ></div>
+        ))}
+      </div>
+
+      {/* Header */}
+      <header className="app-header">
         <div className="header-content">
-          <div className="logo-section">
-            <div className="logo-icon">
-              <div className="logo-square"></div>
-              <div className="logo-square"></div>
-              <div className="logo-square"></div>
-              <div className="logo-square"></div>
+          <div className="brand">
+            <div className="brand-icon">
+              <div className="icon-inner"></div>
             </div>
-            <h1 className="main-title">
-              <span className="title-line-1">IMAGE</span>
-              <span className="title-line-2">GALLERY</span>
-            </h1>
+            <div className="brand-text">
+              <h1 className="brand-title">GALLERY</h1>
+              <span className="brand-subtitle">Finitions</span>
+            </div>
           </div>
-          <div className="header-decoration"></div>
         </div>
       </header>
 
-      <main className="main-content">
-        <CategoryList 
-          onSelectCategory={setSelectedCategory} 
-          selectedCategory={selectedCategory} 
-        />
-        <ImageGallery categoryId={selectedCategory} />
-      </main>
+      {/* Main Layout */}
+      <div className="main-layout">
+        <aside className="sidebar">
+          <CategoryList 
+            onSelectCategory={setSelectedCategory} 
+            selectedCategory={selectedCategory} 
+          />
+        </aside>
 
-      <div className="floating-shapes">
-        <div className="shape shape-1"></div>
-        <div className="shape shape-2"></div>
-        <div className="shape shape-3"></div>
+        <main className="content-area">
+          <ImageGallery categoryId={selectedCategory} />
+        </main>
       </div>
     </div>
   );

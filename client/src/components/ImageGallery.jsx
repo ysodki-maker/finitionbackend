@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../api";
 import "./ImageGallery.css";
 
-const url = "http://localhost:3000/uploads/";
+const url = "https://corecrm.cosinus.ma/uploads/";
 
 export default function ImageGallery({ categoryId }) {
   const [images, setImages] = useState([]);
@@ -72,8 +72,8 @@ export default function ImageGallery({ categoryId }) {
             </div>
             <div className="icon-glow"></div>
           </div>
-          <h3 className="empty-title">Select a Collection</h3>
-          <p className="empty-description">Choose a category from the sidebar to explore stunning visuals</p>
+          <h3 className="empty-title">Sélectionnez une collection</h3>
+          <p className="empty-description">Choisissez une catégorie dans la barre latérale.</p>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ export default function ImageGallery({ categoryId }) {
           <div className="spinner-ring"></div>
           <div className="spinner-ring"></div>
         </div>
-        <p className="loading-text">Loading Collection...</p>
+        <p className="loading-text">Chargement de la collection...</p>
       </div>
     );
   }
@@ -97,8 +97,8 @@ export default function ImageGallery({ categoryId }) {
       <section className="gallery-container">
         <div className="gallery-header">
           <div className="header-text">
-            <h2 className="gallery-title">Visual Showcase</h2>
-            <p className="gallery-subtitle">Curated collection of premium imagery</p>
+            <h2 className="gallery-title">Présentation visuelle</h2>
+            <p className="gallery-subtitle">Collection d'images</p>
           </div>
           <div className="header-stats">
             <div className="stat-box">
@@ -121,8 +121,8 @@ export default function ImageGallery({ categoryId }) {
                 </div>
                 <div className="icon-glow"></div>
               </div>
-              <h3 className="empty-title">No Images Found</h3>
-              <p className="empty-description">This collection is currently empty</p>
+              <h3 className="empty-title">Aucune image trouvée</h3>
+              <p className="empty-description">Cette collection est actuellement vide.</p>
             </div>
           </div>
         ) : (
@@ -226,3 +226,4 @@ export default function ImageGallery({ categoryId }) {
     </>
   );
 }
+

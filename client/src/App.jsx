@@ -72,7 +72,7 @@ function App() {
               <div className="icon-inner"></div>
             </div>
             <div className="brand-text">
-              <h1 className="brand-title">GALLERY</h1>
+              <h1 className="brand-title">GALERIE</h1>
               <span className="brand-subtitle">Finitions</span>
             </div>
           </div>

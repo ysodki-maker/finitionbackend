@@ -1,5 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "http://localhost:3000", // ton backend Express
+  baseURL: "https://lightcyan-nightingale-747331.hostingersite.com", // ton backend Express
 });
+

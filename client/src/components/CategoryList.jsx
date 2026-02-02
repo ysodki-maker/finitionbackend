@@ -15,7 +15,7 @@ export default function CategoryList({ onSelectCategory, selectedCategory }) {
     <nav className="category-navigation">
       <div className="nav-header">
         <h2 className="nav-title">
-          <span className="title-text">Explore</span>
+          <span className="title-text">Explorer</span>
           <span className="title-accent">Finitions</span>
         </h2>
         <div className="nav-count-badge">
@@ -58,3 +58,4 @@ export default function CategoryList({ onSelectCategory, selectedCategory }) {
     </nav>
   );
 }
+
